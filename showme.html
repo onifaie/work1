@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Courses</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Actor">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css">
+    <link rel="stylesheet" href="/assets/css/styles.min.css?h=5804d9c5541899631f176464200c51b1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.1.1/aos.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/css/lightbox.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600&display=swap" rel="stylesheet">
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600&display=swap" rel="stylesheet">
+
+<!------ Include the above in your HEAD tag ---------->
+<style>
+h1,h2{
+font-family: 'Cairo', sans-serif;
+color:black ;
+
+}
+html{
+
+dirction:rtl;
+
+}
+head{
+dirction:rtl;
+}
+p{
+font-family: 'Cairo', sans-serif;
+color:black;
+
+}
+
+body {
+
+
+/*-=-=-=-=-=-=-=-=-=-=-=- */
+/* Column Grids */
+/*-=-=-=-=-=-=-=-=-=-=-=- */
+
+.col_half { width: 49%; }
+.col_third { width: 32%; }
+.col_fourth { width: 23.5%; }
+.col_fifth { width: 18.4%; }
+.col_sixth { width: 15%; }
+.col_three_fourth { width: 74.5%;}
+.col_twothird{ width: 66%;}
+.col_half,
+.col_third,
+.col_twothird,
+.col_fourth,
+.col_three_fourth,
+.col_fifth{
+	position: relative;
+	display:inline;
+	display: inline-block;
+	float: left;
+	margin-right: 2%;
+	margin-bottom: 20px;
+}
+.end { margin-right: 0 !important; }
+/* Column Grids End */
+
+.wrapper { width: 980px; margin: 30px auto; position: relative;}
+.counter { background-color: white;color:red; padding: 20px 0; border-radius: 5px;}
+.count-title { font-size: 40px; font-weight: normal;  margin-top: 10px; margin-bottom: 0; text-align: center; }
+.count-text { font-size: 13px; font-weight: normal;  margin-top: 10px; margin-bottom: 0; text-align: center; }
+.fa-2x { margin: 0 auto; float: none; display: table; color: #4ad1e5; }
+
+
+
+</style>
+
+<script>
+
+(function ($) {
+	$.fn.countTo = function (options) {
+		options = options || {};
+		
+		return $(this).each(function () {
+			// set options for current element
+			var settings = $.extend({}, $.fn.countTo.defaults, {
+				from:            $(this).data('from'),
+				to:              $(this).data('to'),
+				speed:           $(this).data('speed'),
+				refreshInterval: $(this).data('refresh-interval'),
+				decimals:        $(this).data('decimals')
+			}, options);
+			
+			// how many times to update the value, and how much to increment the value on each update
+			var loops = Math.ceil(settings.speed / settings.refreshInterval),
+				increment = (settings.to - settings.from) / loops;
+			
+			// references & variables that will change with each update
+			var self = this,
+				$self = $(this),
+				loopCount = 0,
+				value = settings.from,
+				data = $self.data('countTo') || {};
+			
+			$self.data('countTo', data);
+			
+			// if an existing interval can be found, clear it first
+			if (data.interval) {
+				clearInterval(data.interval);
+			}
+			data.interval = setInterval(updateTimer, settings.refreshInterval);
+			
+			// initialize the element with the starting value
+			render(value);
+			
+			function updateTimer() {
+				value += increment;
+				loopCount++;
+				
+				render(value);
+				
+				if (typeof(settings.onUpdate) == 'function') {
+					settings.onUpdate.call(self, value);
+				}
+				
+				if (loopCount >= loops) {
+					// remove the interval
+					$self.removeData('countTo');
+					clearInterval(data.interval);
+					value = settings.to;
+					
+					if (typeof(settings.onComplete) == 'function') {
+						settings.onComplete.call(self, value);
+					}
+				}
+			}
+			
+			function render(value) {
+				var formattedValue = settings.formatter.call(self, value, settings);
+				$self.html(formattedValue);
+			}
+		});
+	};
+	
+	$.fn.countTo.defaults = {
+		from: 0,               // the number the element should start at
+		to: 0,                 // the number the element should end at
+		speed: 1000,           // how long it should take to count between the target numbers
+		refreshInterval: 100,  // how often the element should be updated
+		decimals: 0,           // the number of decimal places to show
+		formatter: formatter,  // handler for formatting the value before rendering
+		onUpdate: null,        // callback method for every time the element is updated
+		onComplete: null       // callback method for when the element finishes updating
+	};
+	
+	function formatter(value, settings) {
+		return value.toFixed(settings.decimals);
+	}
+}(jQuery));
+
+jQuery(function ($) {
+  // custom formatting example
+  $('.count-number').data('countToOptions', {
+	formatter: function (value, options) {
+	  return value.toFixed(options.decimals).replace(/\B(?=(?:\d{3})+(?!\d))/g, ',');
+	}
+  });
+  
+  // start all the timers
+  $('.timer').each(count);  
+  
+  function count(options) {
+	var $this = $(this);
+	options = $.extend({}, options || {}, $this.data('countToOptions') || {});
+	$this.countTo(options);
+  }
+});
+
+</script>
+</head>
+
+<body>
+    <section style="margin-top: 0px;opacity: 1;background-color: #0a0909;">
+        <div class="container"><style>
+
+@import url(https://fonts.googleapis.com/css?family=PT+Sans+Narrow);
+	@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@600&display=swap');
+	*{
+		dirction:rtl;
+	}
+body {
+  font-family: 'Cairo', sans-serif;
+
+  font-size: 13px;
+  color: #666;
+  position: relative;
+  -webkit-font-smoothing: antialiased;
+  margin: 0;
+	dirction:rtl;
+	
+}
+
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, p, blockquote, th, td {
+  margin: 0;
+  padding: 0;
+  font-size: 13px;
+  direction: ltr;
+	font-family: 'Cairo', sans-serif;
+
+}
+
+.sectionClass {
+  padding: 20px 0px 50px 0px;
+  position: relative;
+  display: block;
+	font-family: 'Cairo', sans-serif;
+}
+
+.fullWidth {
+  width: 100% !important;
+  display: table;
+  float: none;
+  padding: 0;
+  min-height: 1px;
+  height: 100%;
+  position: relative;
+}
+
+
+.sectiontitle {
+  background-position: center;
+  margin: 30px 0 0px;
+  text-align: center;
+  min-height: 20px;
+		font-family: 'Cairo', sans-serif;
+
+}
+
+.sectiontitle h2 {
+  font-size: 30px;
+  color: #222;
+  margin-bottom: 0px;
+  padding-right: 10px;
+  padding-left: 10px;
+		font-family: 'Cairo', sans-serif;
+
+}
+
+
+.headerLine {
+  width: 160px;
+  height: 2px;
+  display: inline-block;
+  background: #101F2E;
+		font-family: 'Cairo', sans-serif;
+
+}
+
+
+.projectFactsWrap{
+    display: flex;
+  margin-top: 30px;
+  flex-direction: row;
+  flex-wrap: wrap;
+		font-family: 'Cairo', sans-serif;
+
+}
+
+
+#projectFacts .fullWidth{
+  padding: 0;
+}
+
+.projectFactsWrap .item{
+  width: 25%;
+  height: 100%;
+  padding: 50px 0px;
+  text-align: center;
+}
+
+.projectFactsWrap .item:nth-child(1){
+  background: rgb(16, 31, 46);
+}
+
+.projectFactsWrap .item:nth-child(2){
+  background: rgb(18, 34, 51);
+}
+
+.projectFactsWrap .item:nth-child(3){
+  background: rgb(21, 38, 56);
+}
+
+.projectFactsWrap .item:nth-child(4){
+  background: rgb(23, 44, 66);
+}
+
+.projectFactsWrap .item p.number{
+  font-size: 40px;
+  padding: 0;
+  font-weight: bold;
+}
+
+.projectFactsWrap .item p{
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 18px;
+  margin: 0;
+  padding: 10px;
+  font-family: 'Open Sans';
+		font-family: 'Cairo', sans-serif;
+
+}
+
+
+.projectFactsWrap .item span{
+  width: 60px;
+  background: rgba(255, 255, 255, 0.8);
+  height: 2px;
+  display: block;
+  margin: 0 auto;
+}
+
+
+.projectFactsWrap .item i{
+  vertical-align: middle;
+  font-size: 50px;
+  color: red;
+}
+
+
+.projectFactsWrap .item:hover i, .projectFactsWrap .item:hover p{
+  color: red;
+}
+
+.projectFactsWrap .item:hover span{
+  background: white;
+}
+
+@media (max-width: 786px){
+  .projectFactsWrap .item {
+     flex: 0 0 50%;
+  }
+}
+
+/* AUTHOR LINK */
+
+
+footer{
+  z-index: 100;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+}
+
+footer p {
+color: rgba(255, 255, 255, 0.8);
+  font-size: 16px;
+  opacity: 0;
+  font-family: 'Open Sans';
+  width: 100%;
+    word-wrap: break-word;
+  line-height: 25px;
+  -webkit-transform: translateX(-200px);
+  transform: translateX(-200px);
+  margin: 0;
+  -webkit-transition: all 250ms ease;
+  -moz-transition: all 250ms ease;
+  transition: all 250ms ease;
+}
+
+footer .authorWindow a{
+  color: white;
+  text-decoration: none;
+}
+
+footer p strong {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.about-me-img {
+  width: 120px;
+  height: 120px;
+  left: 10px;
+  /* bottom: 30px; */
+  position: relative;
+  border-radius: 100px;
+}
+
+
+.about-me-img img {
+}
+
+
+.authorWindow{
+  width: 600px;
+  background: #75439a;
+  padding: 22px 20px 22px 20px;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.authorWindowWrapper{
+  display: none;
+  left: 110px;
+  top: 0;
+  padding-left: 25px;
+  position: absolute;
+}
+
+
+
+
+
+.trans{
+  opacity: 1;
+  -webkit-transform: translateX(0px);
+  transform: translateX(0px);
+  -webkit-transition: all 500ms ease;
+  -moz-transition: all 500ms ease;
+  transition: all 500ms ease;
+}
+
+@media screen and (max-width: 768px) {
+    .authorWindow{
+         width: 210px;
+    }
+
+    .authorWindowWrapper{
+             bottom: -170px;
+  margin-bottom: 20px;
+    }
+
+    footer p{
+          font-size: 14px;
+    }
+}
+
+
+
+</style>
+
+
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<!DOCTYPE html>
+<html lang="en" style="font-family: 'Cairo', sans-serif;
+" >
+
+<head>
+  <meta charset="UTF-8">
+  <title>Project counter</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans:400,700&amp'>
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css'>
+
+      <link rel="stylesheet" href="css/style.css">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600&display=swap" rel="stylesheet">
+
+  
+</head>
+
+<body style="font-family: 'Cairo', sans-serif;
+">
+
+  <div class="sectiontitle">
+    <h2 style="color:White ">معدلات المبيعات اليومية </h2>
+    <span class="headerLine"></span>
+</div>
+<div id="projectFacts" class="sectionClass">
+    <div class="fullWidth eight columns">
+        <div class="projectFactsWrap ">
+            <div class="item wow fadeInUpBig animated animated" data-number="580" style="visibility: visible;">
+                <i class="fa fa-briefcase"></i>
+                <p id="number1" class="number">4599</p>
+                <span></span>
+                <p style="font-family: 'Cairo', sans-serif;
+">عدد ساعات التدريب </p>
+            </div>
+            <div class="item wow fadeInUpBig animated animated" data-number="55" style="visibility: visible;">
+                <i class="fa fa-smile-o"></i>
+                <p id="number2" class="number">500</p>
+                <span></span>
+                <p>عدد المشاريع </p>
+            </div>
+            <div class="item wow fadeInUpBig animated animated" data-number="359" style="visibility: visible;">
+                <i class="fa fa-coffee"></i>
+                <p id="number3" class="number">450</p>
+                <span></span>
+                <p>عدد أصناف التسوق</p>
+            </div>
+            <div class="item wow fadeInUpBig animated animated" data-number="246" style="visibility: visible;">
+                <i class="fa fa-camera"></i>
+                <p id="number4" class="number">1250</p>
+                <span></span>
+                <p>إجمالي العملاء الحاليين  </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+  <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+
+  
+
+    <script  src="js/index.js"></script>
+
+
+
+
+<script>
+
+	$.fn.jQuerySimpleCounter = function( options ) {
+	    var settings = $.extend({
+	        start:  0,
+	        end:    100,
+	        easing: 'swing',
+	        duration: 400,
+	        complete: ''
+	    }, options );
+
+	    var thisElement = $(this);
+
+	    $({count: settings.start}).animate({count: settings.end}, {
+			duration: settings.duration,
+			easing: settings.easing,
+			step: function() {
+				var mathCount = Math.ceil(this.count);
+				thisElement.text(mathCount);
+			},
+			complete: settings.complete
+		});
+	};
+
+
+$('#number1').jQuerySimpleCounter({end: 1724,duration: 3000});
+$('#number2').jQuerySimpleCounter({end: 55,duration: 3000});
+$('#number3').jQuerySimpleCounter({end: 12455,duration: 2000});
+$('#number4').jQuerySimpleCounter({end: 1350000,duration: 4000});
+
+
+
+  	/* AUTHOR LINK */
+     $('.about-me-img').hover(function(){
+            $('.authorWindowWrapper').stop().fadeIn('fast').find('p').addClass('trans');
+        }, function(){
+            $('.authorWindowWrapper').stop().fadeOut('fast').find('p').removeClass('trans');
+        });
+
+
+
+</script>
+
+
+
+</body>
+
+</html>
+</div>
+    </section>
+    <!-- Start: Carousel Hero --><div class="carousel slide" data-ride="carousel" id="carousel-1">
+    <div class="carousel-inner" role="listbox">
+        <div class="item active">
+            <div class="jumbotron hero-nature carousel-hero">
+                <h1 class="hero-title">التدريب والاصرار</h1>
+                <p class="hero-subtitle">من يريد النجاح لابد وأن يدفع الضريبة وهي الوقت والالتزام هذان عنصران إذا توفرت لديك فسوف تصل بسهولة </p>
+                <p><a class="btn btn-primary btn-lg hero-button" role="button" href="#">تعليم الكثير حول مهارة التعلم </a></p>
+            </div>
+        </div>
+        <div class="item">
+            <div class="jumbotron hero-photography carousel-hero">
+                <h1 class="hero-title">Hero Photography</h1>
+                <p class="hero-subtitle">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam.</p>
+                <p><a class="btn btn-primary btn-lg hero-button" role="button" href="#">Learn more</a></p>
+            </div>
+        </div>
+        <div class="item">
+            <div class="jumbotron hero-technology carousel-hero">
+                <h1 class="hero-title">Hero Technology</h1>
+                <p class="hero-subtitle">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam.</p>
+                <p><a class="btn btn-primary btn-lg hero-button" role="button" href="#">Learn more</a></p>
+            </div>
+        </div>
+        <div class="item">
+            <div class="jumbotron hero-food carousel-hero">
+                <h1 class="hero-title">Hero Food</h1>
+                <p class="hero-subtitle">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam.</p>
+                <p><a class="btn btn-primary btn-lg hero-button" role="button" href="#">Learn more</a></p>
+            </div>
+        </div>
+        <div class="item">
+            <div class="jumbotron hero-music carousel-hero">
+                <h1 class="hero-title">Hero Music</h1>
+                <p class="hero-subtitle">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam.</p>
+                <p><a class="btn btn-primary btn-lg hero-button" role="button" href="#">Learn more</a></p>
+            </div>
+        </div>
+        <div class="item">
+            <div class="jumbotron hero-travel carousel-hero">
+                <h1 class="hero-title">Hero Travel</h1>
+                <p class="hero-subtitle">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam.</p>
+                <p><a class="btn btn-primary btn-lg hero-button" role="button" href="#">Learn more</a></p>
+            </div>
+        </div>
+    </div>
+    <div><a class="left carousel-control" href="#carousel-1" role="button" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i><span class="sr-only">Previous</span></a>
+        <a class="right carousel-control" href="#carousel-1" role="button" data-slide="next"><i class="glyphicon glyphicon-chevron-right"></i><span class="sr-only">Next</span></a>
+    </div>
+    <ol class="carousel-indicators">
+        <li data-target="#carousel-1" data-slide-to="0" class="active"></li>
+        <li data-target="#carousel-1" data-slide-to="1"></li>
+        <li data-target="#carousel-1" data-slide-to="2"></li>
+        <li data-target="#carousel-1" data-slide-to="3"></li>
+        <li data-target="#carousel-1" data-slide-to="4"></li>
+        <li data-target="#carousel-1" data-slide-to="5"></li>
+    </ol>
+</div>
+    <!-- End: Carousel Hero -->
+    <!-- Start: Profile Card -->
+    <div class="profile-card" style="background-color: #166f14;">
+        <div class="profile-back"><img class="rounded-circle profile-pic" data-aos="zoom-in" src="/assets/img/mypic.jpg?h=cc54bb84955a3983ef90de6022c370f2" style="width: 300px;height: 300px;opacity: 0.40;margin-bottom: 27px;">
+            <div></div>
+        </div>
+    </div>
+    <!-- End: Profile Card -->
+    <!-- Start: Projects Clean -->
+    <div class="projects-clean" style="margin-top: 116px;">
+        <div class="container">
+            <!-- Start: Intro -->
+            <div class="intro"><h2 class="text-center text-sm-center text-md-center text-lg-center text-xl-center" id="myh2" style="width: 600px;font-family: 'Cairo', sans-serif;
+">المشاريع التي تم عملها في الفترة الاخيرة </h2>
+                <p class="text-center">من يريد الاستفادة من المشاريع التي عملت أمل التواصل معي لتوضيح بعض الامور المتعلقة في التركيب لقواعد البيانات وكذلك بعض الدوال الهامة في المشاريع - تحياتي&nbsp;</p>
+            </div>
+            <!-- End: Intro -->
+            <!-- Start: Projects -->
+            <div class="row projects">
+                <div class="col-sm-6 col-lg-4 item" data-aos="zoom-in"><img class="rounded img-fluid bg-danger border-success shadow" data-bs-hover-animate="rubberBand" src="/assets/img/circletreaning.jpg?h=4a30f45cb532dec960db1ae9e9a943c7">
+                    <h3 class="name">مشروع التدريب والكورسات</h3>
+                    <p class="description">هذا المشروع يدير مو��وعات التدريب على كورسات اعتقد انها قوية جداً وتأهل المتدرب لسوق العمل وهو متمكن من التخصصات المطلوبة هناك كمية ممتاز من الكورسات التي قل ما تجدها ف يالمواقع العربية وموضوعاتها مهمة جداً ومطلوبة في سوق العمل امل
+                        الاستمتاع معي في هذة الكروسات الرائعه&nbsp;</p><a class="btn btn-primary bg-warning border-dark shadow-lg" role="button" style="width: 100%;" href="/index.html">زيارة المشروع والاطلاع عليه&nbsp;</a></div>
+                <div class="col-sm-6 col-lg-4 item"
+                    data-aos="zoom-in"><img class="img-fluid" data-bs-hover-animate="swing" src="/assets/img/resturent.jpg?h=d9d37ba6d798ab8cbcfa89a65e5bf4bb" style="width: 330px;height: 193px;"><h3 id="h3" class="name" style="font-family: 'Cairo', sans-serif;
+">مشروع المطاعم </h3>
+                    <p class="description">مشروع يمكن الاستفادة منه في المطاعم بديل عن المنيو الورقي ويمكن للطلب ارسالة الى الكاشير والمطبخ بعد اعتمادة من العمل ويمكن للعميل الدفع مباشرة من خلال الدفع اللالكتروني&nbsp;</p><a class="btn btn-primary bg-danger border-danger shadow-lg"
+                        role="button" style="width: 100%;" href="/Resturent/index.html">زيارة المشروع والاطلاع عليه&nbsp;</a></div>
+                <div class="col-sm-6 col-lg-4 item" data-aos="zoom-in"><img class="img-fluid" data-bs-hover-animate="wobble" src="/assets/img/E-cournce.jpg?h=96c0e967c8c6170cdc476e5a8f280544"><h3 id="h3"  style="font-family: 'Cairo', sans-serif; class="name">مشروع التسوق الالكتروني </h3>
+                    <p class="description">هذا المشروع فيه جميع الخدمات للتسوق الالكرتوني ويخدم جميع القطاعات وخدمات التوصيل والدفع الالكتروني&nbsp;</p><a class="btn btn-light btn-lg" role="button" style="width: 100%;background-color: rgb(47,135,224);color: rgb(247,249,251);"
+                        href="/EC/index.html">زيارة المشروع والاطلاع عليه&nbsp;</a></div>
+                <div class="col-sm-6 col-lg-4 item" data-aos="zoom-in"><img class="img-fluid" src="/assets/img/faceattandetion.jpg?h=c9bf7236696cb254a2351da31b4d6723">
+                    <h3 id="h3" class="name">مشروع الذكاء اللاصطناعي</h3>
+                    <p class="description">مشروع يقدم خدمة تحضير الطلاب مباشرة من خلال فقط الدخول للقاعة مما يساعد المحاضر للتفرغ للدرس يمكن للنظام التعرف على الوجوة مباشرة وتتم معالجة الحضور وإيضهار التقارير حول الطالب&nbsp;</p><button class="btn btn-primary" type="button"
+                        style="width: 100%;">زيارة المشروع والاطلاع عليه&nbsp;</button></div>
+                <div class="col-sm-6 col-lg-4 item" data-aos="zoom-in"><img class="img-fluid" src="/assets/img/married.jpg?h=54e56491943197890241031f5a7eb663">
+                    <h3 id="h3" class="name">مشروع خدمات الزواج</h3>
+                    <p class="description">يقدم هذا المشروع البحث عن شريك الزواج تحت إدارة صاحب الموقع بالموافقة والتنسيق&nbsp; ويمكن من خلال الموقع يتقدم الشخص والبحث عن شريك حياته حسب المواصفات التي يريدها ولكن من خلال مدير النظام&nbsp;</p><button class="btn btn-primary"
+                        type="button" style="width: 100%;">زيارة المشروع والاطلاع عليه&nbsp;</button></div>
+                <div class="col-sm-6 col-lg-4 item" data-aos="zoom-in"><img class="img-fluid" src="/assets/img/house.jpg?h=3a85fc185eeb7da62f7820c2c97e3c03">
+                    <h3 id="h3" class="name">مشروع علم البيانات والتخطيط</h3>
+                    <p class="description">المشروع يهدف الى تقديم ملف كامل بالبيانات وحسب الحقول المح��ارة يمكن أن يعطيك تصنيفات او توقعات مستقبلية برسم بياني مفهوم وواضح فقط ارفع الملف وحدد له الحقول وسوف تعمل الخوارزميات للتصنيف والتوقع&nbsp; حسب علم البيانات وعلم الالة العميق&nbsp;
+                        Deeplearning &amp; DataSinces&nbsp;</p><button class="btn btn-primary" type="button" style="width: 100%;">زيارة المشروع والاطلاع عليه&nbsp;</button></div>
+                <div class="col-sm-6 col-lg-4 item" data-aos="zoom-in-left"><img class="img-fluid" src="/assets/img/sy1.jpg?h=33740f8aa9571536ca4fe51535354354">
+                    <h3 id="h3" class="name">تحليل بيانات SPSS</h3>
+                    <p class="description">لقد قمت بتحليل بيانات اكادمية وتعليمية وكذلك عرض الاستبانات وتفريغها بطريقة علمية وعملية&nbsp;</p><button class="btn btn-primary" type="button" style="width: 100%;">زيارة المشروع والاطلاع عليه&nbsp;</button></div>
+                <div class="col-sm-6 col-lg-4 item"
+                    data-aos="zoom-in-left"><img class="img-fluid" src="/assets/img/sy2.jpg?h=17602d519e13913e100ee2b8aaec79dc">
+                    <h3 id="h3" class="name">إحتراف برنامج الاكسل&nbsp;</h3>
+                    <p class="description">شرح معادلاات إحترافية في التحليل والاحصاء ببرنامج الاكسل طرق إحترافية في قراءة البيانات وإستخراج النتائج تعرف عليها في&nbsp; هذا المشروع&nbsp;</p><button class="btn btn-primary" type="button" style="width: 100%;">زيارة المشروع والاطلاع عليه&nbsp;</button></div>
+            </div>
+            <!-- End: Projects -->
+        </div>
+    </div>
+    <!-- End: Projects Clean -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/js/smart-forms.min.js?h=18313f04cea0e078412a028c5361bd4e"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.1.1/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/js/lightbox.min.js"></script>
+    <script src="/assets/js/script.min.js?h=62d9230fe7771adec923aae01082a80b"></script>
+</body>
+
+</html>
